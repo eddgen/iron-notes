@@ -2,10 +2,6 @@ package com.eddgen.iron_notes.domain.dto;
 
 import java.util.List;
 
-import com.eddgen.iron_notes.domain.entities.Exercise;
-import com.eddgen.iron_notes.domain.entities.ExerciseSet;
-import com.eddgen.iron_notes.domain.entities.WorkoutSession;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,12 +16,10 @@ public class WorkoutExerciseDto {
     private String id;
 
     
-    private Exercise exercise;
+    private ExerciseDto exercise;
 
     
-    private List<ExerciseSet> sets;
+    private List<ExerciseSetDto> sets;
 
-    
-    private WorkoutSession workoutSession;
     
 }

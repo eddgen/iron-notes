@@ -39,7 +39,7 @@ public class WorkoutSession {
 
     private LocalDateTime endedAt;
 
-    private boolean completed;
+    private Boolean completed;
     
     @OneToMany(mappedBy = "workoutSession")
     private List<WorkoutExercise> exercises;

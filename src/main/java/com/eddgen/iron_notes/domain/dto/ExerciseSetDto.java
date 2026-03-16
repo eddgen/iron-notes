@@ -1,7 +1,5 @@
 package com.eddgen.iron_notes.domain.dto;
 
-import com.eddgen.iron_notes.domain.entities.WorkoutExercise;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,5 +21,4 @@ public class ExerciseSetDto {
 
     private Integer reps;
 
-    private WorkoutExercise workoutExercise;
 }

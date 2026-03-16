@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.eddgen.iron_notes.domain.entities.WorkoutExercise;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +25,7 @@ public class WorkoutSessionDto {
 
     private LocalDateTime endedAt;
 
-    private boolean completed;
+    private Boolean completed;
     
-    private List<WorkoutExercise> exercises;
+    private List<WorkoutExerciseDto> exercises;
 }
