@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
+@RequestMapping(path = "/exercises")
 public class ExercisesController {
 
     private Mapper<Exercise, ExerciseDto> exerciseMapper;
@@ -33,14 +35,14 @@ public class ExercisesController {
         this.exerciseService = exerciseService;
     }
 
-    @PostMapping("/exercises")
+    @PostMapping
     public ResponseEntity<ExerciseDto> createExercise(@RequestBody ExerciseDto exerciseDto) {
         Exercise exercise = exerciseMapper.mapFromDto(exerciseDto);
         Exercise savedExercise = exerciseService.save(exercise);
         return new ResponseEntity<>(exerciseMapper.mapToDto(savedExercise),HttpStatus.CREATED);
     }
 
-    @GetMapping("/exercises")
+    @GetMapping
     public List<ExerciseDto> getAllExercises() {
         List<Exercise> exercises = exerciseService.findAll();
         return exercises.stream()
@@ -48,7 +50,7 @@ public class ExercisesController {
         .toList();
     }
     
-    @GetMapping("/exercises/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ExerciseDto> getExerciseById(@PathVariable Long id) {
         Optional<Exercise> optionalExerciseEntity = exerciseService.findById(id);
         return optionalExerciseEntity.map(exercise ->{
@@ -57,7 +59,7 @@ public class ExercisesController {
         }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));       
     }   
 
-    @PatchMapping("/exercises/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ExerciseDto> partialUpdateExercise(
         @PathVariable Long id,
         @RequestBody ExerciseDto exerciseDto
@@ -72,7 +74,7 @@ public class ExercisesController {
         return new ResponseEntity<>(responseExercise,HttpStatus.OK);
     }
 
-    @DeleteMapping("/exercise/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteExercise(@PathVariable Long id){
         exerciseService.deleteExercise(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

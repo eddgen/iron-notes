@@ -15,6 +15,8 @@ public interface WorkoutSessionService {
 
     boolean exists(String id);
 
+    void deleteWorkout(String id);
+
     
 
 }

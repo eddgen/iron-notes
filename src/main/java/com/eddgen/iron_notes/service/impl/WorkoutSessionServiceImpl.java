@@ -47,6 +47,11 @@ public class WorkoutSessionServiceImpl implements WorkoutSessionService{
     public boolean exists(String id) {
         return workoutRepository.existsById(id);
     }
+
+    @Override
+    public void deleteWorkout(String id) {
+        workoutRepository.deleteById(id);
+    }
     
 
 }
