@@ -21,4 +21,5 @@ public class ExerciseSetDto {
 
     private Integer reps;
 
+    private WorkoutExerciseDto workoutExerciseDto;
 }

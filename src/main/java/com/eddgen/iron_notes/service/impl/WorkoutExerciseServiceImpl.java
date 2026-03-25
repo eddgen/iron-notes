@@ -62,15 +62,21 @@ public class WorkoutExerciseServiceImpl implements WorkoutExerciseService{
         Optional<WorkoutExercise> existingWorkoutExercise = wrExerciseRepository.findByIdAndWorkoutSessionId(id, workout_id);
 
         return existingWorkoutExercise.map(existingWrExercise -> {
-            Optional.ofNullable(workoutExerciseToUpdate.getId()).ifPresent(existingWrExercise::setId);
             Optional.ofNullable(workoutExerciseToUpdate.getExercise()).ifPresent(existingWrExercise::setExercise);
             Optional.ofNullable(workoutExerciseToUpdate.getSets()).ifPresent(existingWrExercise::setSets);
             Optional.ofNullable(workoutExerciseToUpdate.getWorkoutSession()).ifPresent(existingWrExercise::setWorkoutSession);
 
-            return wrExerciseRepository.save(existingWorkoutExercise.get());
+            return wrExerciseRepository.save(existingWrExercise);
         }).orElseThrow(()->new RuntimeException("Exercise from workout session not found"));
         
         
+    }
+
+    @Override
+    public void deleteWorkoutExercise(String workout_id, String id) {
+        wrExerciseRepository.findByIdAndWorkoutSessionId(id, workout_id)
+                .orElseThrow(() -> new RuntimeException("Exercise Not found"));
+        wrExerciseRepository.deleteById(id);
     }
 
     

@@ -15,4 +15,6 @@ public interface WorkoutExerciseService {
     WorkoutExercise saveWrExercise(String workout_id, WorkoutExercise workoutExercise);
 
     WorkoutExercise updateWrExercise(String workout_id, String id, WorkoutExercise workoutExerciseToUpdate);
+
+    void deleteWorkoutExercise(String workout_id, String id);
 }
