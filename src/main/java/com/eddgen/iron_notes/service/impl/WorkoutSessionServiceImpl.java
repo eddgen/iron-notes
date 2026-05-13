@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.eddgen.iron_notes.domain.entities.WorkoutSession;
+import com.eddgen.iron_notes.exceptions.ResourceNotFoundException;
 import com.eddgen.iron_notes.repositories.WorkoutSessionRepository;
 import com.eddgen.iron_notes.service.WorkoutSessionService;
 
@@ -40,7 +41,7 @@ public class WorkoutSessionServiceImpl implements WorkoutSessionService{
             Optional.ofNullable(workoutSession.getCompleted()).ifPresent(existingWorkout::setCompleted);
 
             return workoutRepository.save(existingWorkout);
-        }).orElseThrow(() -> new RuntimeException("Workout session not found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("Workout session not found with id: " + id));
     }
 
     @Override

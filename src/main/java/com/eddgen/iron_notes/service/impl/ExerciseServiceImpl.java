@@ -5,12 +5,15 @@ import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eddgen.iron_notes.domain.entities.Exercise;
+import com.eddgen.iron_notes.exceptions.ResourceNotFoundException;
 import com.eddgen.iron_notes.repositories.ExerciseRepository;
 import com.eddgen.iron_notes.service.ExerciseService;
 
 @Service
+@Transactional
 public class ExerciseServiceImpl implements ExerciseService{
 
     private ExerciseRepository exerciseRepository;
@@ -51,7 +54,7 @@ public class ExerciseServiceImpl implements ExerciseService{
             Optional.ofNullable(exerciseEntity.getName()).ifPresent(existingExercise::setName);
             Optional.ofNullable(exerciseEntity.getEquipment()).ifPresent(existingExercise::setEquipment);
             return exerciseRepository.save(existingExercise);
-        }).orElseThrow(() -> new RuntimeException("Exercise does not exist")); 
+        }).orElseThrow(() -> new ResourceNotFoundException("Exercise not found with id: " + id));
     }
 
     @Override

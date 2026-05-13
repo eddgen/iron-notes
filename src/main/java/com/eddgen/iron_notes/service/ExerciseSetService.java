@@ -3,7 +3,6 @@ package com.eddgen.iron_notes.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.eddgen.iron_notes.domain.dto.ExerciseSetDto;
 import com.eddgen.iron_notes.domain.entities.ExerciseSet;
 
 public interface ExerciseSetService {
